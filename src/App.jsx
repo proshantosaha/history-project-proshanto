@@ -19,11 +19,29 @@ const App = () => {
   const [inputState,setInputState] = useState({...InitialInputState})
      
 
-const handleInputField = (e) =>{
-   setInputState({
-    ...inputState,
-     [e.target.name]:parseInt( e.target.value)
-   })
+// const handleInputField = (e) =>{
+//    setInputState({
+//     ...inputState,
+//      [e.target.name]:parseInt( e.target.value)
+//    })
+
+// }
+
+
+
+const handleInputFieldA = (e) =>{
+  setInputState({
+   ...inputState,
+   a: e.target.value
+  })
+
+}
+
+const handleInputFieldB = (e) =>{
+  setInputState({
+   ...inputState,
+   b: e.target.value
+  })
 
 }
 
@@ -35,8 +53,8 @@ const handleInputField = (e) =>{
       <div>
         <p>inputs</p>
 
-        <input name='a' onChange={handleInputField} value={inputState.a} type='number'/>
-        <input name='b' onChange={handleInputField} value={inputState.b}  type='number'/>
+        <input name='a' onChange={handleInputFieldA} value={inputState.a} type='number'/>
+        <input name='b' onChange={handleInputFieldB} value={inputState.b}  type='number'/>
       </div>
 
 
