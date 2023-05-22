@@ -1,34 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
+/*
+  1.handle user input fields
+  2.handle oparations 
+  3.handle a list of histories
+  4.render history list
+  5.restore the history
 
-function App() {
-  const [count, setCount] = useState(0)
+
+*/ 
+
+const InitialInputState ={
+  a:0,
+  b:0,
+}
+
+const App = () => {
+
+  const [inputState,setInputState] = useState({...InitialInputState})
+     
+
+const handleInputField = (e) =>{
+   setInputState({
+    ...inputState,
+     [e.target.name]:parseInt( e.target.value)
+   })
+
+}
+
 
   return (
-    <>
+    <div style={{width:'50%',margin:'0 auto'}}>
+      <h1>Result : 0</h1>App
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <p>inputs</p>
+
+        <input name='a' onChange={handleInputField} value={inputState.a} type='number'/>
+        <input name='b' onChange={handleInputField} value={inputState.b}  type='number'/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+
+
+      <div>
+          <p>Oparations</p>
+
+          <button>+</button>
+          <button>-</button>
+          <button>*</button>
+          <button>/</button>
+          <button>clear</button>
+      </div>
+
+
+      <div>
+        <p>History</p>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+          <small>there are no History</small>
+          </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      
+      </div>
+      
   )
 }
 
