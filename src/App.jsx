@@ -17,7 +17,7 @@ const InitialInputState ={
 const App = () => {
 
   const [inputState,setInputState] = useState({...InitialInputState})
-     
+  const [result, setResult] = useState(0)
 
 const handleInputField = (e) =>{
    setInputState({
@@ -58,28 +58,24 @@ const handleInputField = (e) =>{
           ...InitialInputState
         })
 
-
+      setResult(0)
     };  
 
 
     const handleArithMathicops =(operations)=>{
-       
       const f = new Function(
         'operations',
         `
-    
           return ${inputState.a}  ${operations} ${inputState.b}
-        
-        
         `
         )
-       console.log(f(operations));
+        setResult(f(operations));
 
     }
 
   return (
     <div style={{width:'50%',margin:'0 auto'}}>
-      <h1>Result : 0</h1>App
+      <h1>Result : {result}</h1>App
 
       <div>
         <p>inputs</p>
@@ -90,7 +86,7 @@ const handleInputField = (e) =>{
 
 
       <div>
-          <p>Oparations</p>
+          <p>Oparations </p>
 
           <button onClick={()=>handleArithMathicops('+')}>+</button>
           <button onClick={()=>handleArithMathicops('-')}>-</button>
