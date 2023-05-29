@@ -25,7 +25,7 @@ const handleInputField = (e) =>{
      [e.target.name]:parseInt( e.target.value)
    })
 
-}
+};
 
 // const handleInputFieldA = (e) =>{
 //   setInputState({
@@ -52,6 +52,31 @@ const handleInputField = (e) =>{
 
     // }
 
+
+    const handleClear =() =>{
+        setInputState({
+          ...InitialInputState
+        })
+
+
+    };  
+
+
+    const handleArithMathicops =(operations)=>{
+       
+      const f = new Function(
+        'operations',
+        `
+    
+          return ${inputState.a}  ${operations} ${inputState.b}
+        
+        
+        `
+        )
+       console.log(f(operations));
+
+    }
+
   return (
     <div style={{width:'50%',margin:'0 auto'}}>
       <h1>Result : 0</h1>App
@@ -67,11 +92,11 @@ const handleInputField = (e) =>{
       <div>
           <p>Oparations</p>
 
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
-          <button>clear</button>
+          <button onClick={()=>handleArithMathicops('+')}>+</button>
+          <button onClick={()=>handleArithMathicops('-')}>-</button>
+          <button onClick={()=>handleArithMathicops('*')}>*</button>
+          <button onClick={()=>handleArithMathicops('/')}>/</button>
+          <button onClick={handleClear}>clear</button>
       </div>
 
 
