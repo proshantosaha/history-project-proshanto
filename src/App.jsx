@@ -31,6 +31,7 @@ const App = () => {
   const [inputState,setInputState] = useState({...InitialInputState})
   const [result, setResult] = useState(0)
   const [historyItem,setHistoryItem] = useState([])
+  const [restoreHistory,setRestoreHistory] = useState(null)
 
   const handleInputField = (e) =>{
     setInputState({
@@ -64,16 +65,35 @@ const App = () => {
 
       const result = f(operations)
       setResult(result);
-
       const history = {
         id : getId.next(),
-        inputs : inputState,
+        inputs : {...inputState} ,
         operations,
         result,
         date:new Date(),
       }
       setHistoryItem([history, ...historyItem]);
+      
+  
   }
+
+
+  // const generateHistory =(operations,result) =>{
+  //   const history = {
+  //     id : getId.next(),
+  //     inputs : inputState,
+  //     operations,
+  //     result,
+  //     date:new Date(),
+  //   }
+  //   setHistoryItem([history, ...historyItem]);
+  // }
+
+  const handleRestoreBtn = (history) =>{
+    setInputState({...history.inputs});
+    setResult(history.result)
+    setRestoreHistory(history.id)
+  };
 
   return (
     <div style={{width:'50%',margin:'0 auto'}}>
@@ -114,7 +134,8 @@ const App = () => {
               <small>{history.date.toLocaleDateString()}</small>
               <br/>
               <small>{history.date.toLocaleTimeString()}</small>
-              <button>restore</button>
+              <button onClick={()=>handleRestoreBtn(history)} disabled={restoreHistory !== null &&
+              restoreHistory.id === history.id}>restore</button>
         </li>
             ))}
           
